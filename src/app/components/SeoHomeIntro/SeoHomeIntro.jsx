@@ -47,7 +47,7 @@ export default function SeoHomeIntro() {
       <h1 className="mt-3 text-3xl sm:text-4xl md:text-[2.75rem] font-semibold tracking-tight text-neutral-900 dark:text-white leading-[1.15]">
         {t.h1}
       </h1>
-      <p className="mt-4 text-base sm:text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+      <p className="mt-4 text-base sm:text-lg leading-relaxed text-neutral-800 dark:text-neutral-200">
         {t.lead}
       </p>
       <div className="mt-8">

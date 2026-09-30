@@ -39,12 +39,12 @@ export default function BlogList() {
   const posts = getAllBlogPosts().map((post) => getLocalizedPost(post, language));
 
   return (
-    <section className="mx-auto max-w-5xl px-4 sm:px-6 py-12 sm:py-16">
+    <section className="blog-readable mx-auto max-w-5xl px-4 sm:px-6 py-12 sm:py-16">
       <header className="text-center mb-12">
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
           {t.title}
         </h1>
-        <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="blog-body mt-4 text-base sm:text-lg max-w-3xl mx-auto">
           {t.subtitle}
         </p>
       </header>
@@ -68,20 +68,20 @@ export default function BlogList() {
               />
             </Link>
             <div>
-              <p className="text-xs uppercase tracking-wider text-rose-700 dark:text-rose-400 font-semibold">
+              <p className="blog-meta text-xs uppercase tracking-wider font-bold">
                 {post.date} · {post.readTime}
               </p>
-              <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+              <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight">
                 <Link href={withLocale(`/blog/${post.slug}`, language)}>
                   {post.title}
                 </Link>
               </h2>
-              <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="blog-body mt-3 leading-relaxed">
                 {post.excerpt}
               </p>
               <Link
                 href={withLocale(`/blog/${post.slug}`, language)}
-                className="inline-block mt-4 font-bold text-rose-700 hover:text-rose-800 dark:text-rose-400"
+                className="inline-block mt-4 font-bold text-rose-800 hover:text-rose-900"
               >
                 {t.readMore} →
               </Link>

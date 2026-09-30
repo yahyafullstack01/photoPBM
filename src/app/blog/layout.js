@@ -14,7 +14,7 @@ export async function generateMetadata() {
       "couple photoshoot Barcelona guide",
     ],
     path: "/blog",
-    image: "/og/barcelona-photographer.jpg",
+    image: "/og/sagrada.jpg",
     lang,
   });
 }

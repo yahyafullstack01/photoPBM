@@ -10,9 +10,9 @@ const blogPosts = [
   {
     slug: "best-photo-spots-barcelona",
     date: "2026-09-15",
-    image: "/og/barcelona-photographer.jpg",
+    image: "/og/sagrada.jpg",
     imageAlt:
-      "Couple photoshoot in Barcelona with a professional photographer at an iconic city location",
+      "Sagrada Família in Barcelona — iconic photoshoot location for couples",
     relatedLinks: [
       { href: "/favorite-spots", label: "Explore favorite spots" },
       { href: "/love-story", label: "View love stories" },
@@ -182,9 +182,9 @@ const blogPosts = [
   {
     slug: "proposal-photography-barcelona-ciutadella",
     date: "2026-09-22",
-    image: "/og/proposal-barcelona.jpg",
+    image: "/og/ciutadella-proposal.jpg",
     imageAlt:
-      "Surprise proposal photography in Barcelona at Parc de la Ciutadella",
+      "Proposal photoshoot at Parc de la Ciutadella in Barcelona",
     relatedLinks: [
       { href: "/favorite-spots/ciutadella-park", label: "Ciutadella location guide" },
       { href: "/love-story", label: "Proposal & love stories" },
@@ -338,9 +338,9 @@ const blogPosts = [
   {
     slug: "what-to-wear-barcelona-photoshoot",
     date: "2026-09-28",
-    image: "/og/barcelona-photographer.jpg",
+    image: "/og/gothic-quarter.jpg",
     imageAlt:
-      "Couple dressed for a romantic love story photoshoot in Barcelona",
+      "Gothic Quarter Barcelona streets — outfit ideas for a couple photoshoot",
     relatedLinks: [
       { href: "/love-story", label: "See styled love stories" },
       { href: "/Gallery", label: "Browse the gallery" },

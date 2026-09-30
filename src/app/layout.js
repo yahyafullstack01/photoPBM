@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { Montserrat } from "next/font/google";
 import { siteJsonLd, organizationJsonLd } from "./seo/loyout-jsonld";
 import { faqJsonLd } from "./seo/faq-jsonld";
 import "./globals.css";
@@ -9,6 +10,13 @@ import {
   getRequestLocale,
   SITE_URL,
 } from "./seo/build-metadata";
+
+const montserrat = Montserrat({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
 
 const LANG_HTML = { EN: "en", ES: "es", FR: "fr", UA: "uk" };
 
@@ -166,8 +174,8 @@ export default async function RootLayout({ children }) {
   const htmlLang = LANG_HTML[locale] || "en";
 
   return (
-    <html lang={htmlLang} className="h-full">
-      <body className="h-full min-h-screen transition-colors">
+    <html lang={htmlLang} className={`${montserrat.className} h-full`}>
+      <body className="h-full min-h-screen transition-colors text-neutral-900">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

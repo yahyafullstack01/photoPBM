@@ -11,16 +11,59 @@ html,
 body {
   height: 100%;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.6;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #111111;
 }
 
-/* Montserrat Font Family - Optimized for Accessibility */
+/* Montserrat — use system fallback until full weight files are installed.
+   Only Thin was in /public/fonts, which made body text look washed out. */
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat Regular"), local("Montserrat-Regular");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat Medium"), local("Montserrat-Medium");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat SemiBold"), local("Montserrat-SemiBold");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat Bold"), local("Montserrat-Bold");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat ExtraBold"), local("Montserrat-ExtraBold");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Keep Thin available only for decorative ultra-light use */
 @font-face {
   font-family: "Montserrat";
   src: url("/fonts/Montserrat-Thin.woff2") format("woff2"),
@@ -39,13 +82,46 @@ body {
   font-display: swap;
 }
 
-/* Note: Add these font files to /public/fonts/ for better typography:
-   - Montserrat-Regular (400)
-   - Montserrat-Medium (500)
-   - Montserrat-SemiBold (600)
-   - Montserrat-Bold (700)
-   Download from: https://fonts.google.com/specimen/Montserrat
-*/
+/* Blog body text — solid dark, never transparent/gradient fill */
+.blog-readable .blog-body,
+.blog-readable .blog-chip {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #111111 !important;
+  color: #111111 !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+.blog-readable .blog-meta {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #9f1239 !important;
+  color: #9f1239 !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+}
+
+.blog-readable .blog-cta-title {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.dark .blog-readable .blog-body,
+.dark .blog-readable .blog-chip {
+  -webkit-text-fill-color: #f5f5f5 !important;
+  color: #f5f5f5 !important;
+}
+
+.dark .blog-readable .blog-meta {
+  -webkit-text-fill-color: #fb7185 !important;
+  color: #fb7185 !important;
+}
 
 /*
 @media (prefers-color-scheme: dark) {

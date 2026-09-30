@@ -4,7 +4,7 @@ const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.pick-best-moment.com"
 ).replace(/\/$/, "");
 
-export const DEFAULT_OG_IMAGE = "/og/barcelona-photographer.jpg";
+export const DEFAULT_OG_IMAGE = "/og/sagrada.jpg";
 
 /**
  * Build Next.js App Router metadata for a page.

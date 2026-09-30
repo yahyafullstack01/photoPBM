@@ -42,7 +42,7 @@ export default function BlogTeaser() {
         <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
           {t.title}
         </h2>
-        <p className="mt-3 text-gray-600 dark:text-gray-300">{t.subtitle}</p>
+        <p className="mt-3 text-neutral-800 dark:text-neutral-200">{t.subtitle}</p>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-3">
@@ -61,10 +61,10 @@ export default function BlogTeaser() {
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
             </div>
-            <h3 className="font-extrabold text-gray-900 dark:text-white tracking-tight group-hover:text-rose-700 dark:group-hover:text-rose-400">
+            <h3 className="font-extrabold text-neutral-900 dark:text-white tracking-tight group-hover:text-rose-800 dark:group-hover:text-rose-400">
               {post.title}
             </h3>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+            <p className="mt-2 text-sm text-neutral-800 dark:text-neutral-200 line-clamp-3">
               {post.excerpt}
             </p>
           </Link>
