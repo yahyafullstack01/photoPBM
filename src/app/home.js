@@ -6,6 +6,7 @@ import FollowUs from "./components/Follow/Follow.jsx";
 import About from "./components/About/About.jsx";
 import LoveStory from "./components/LoveStory/LoveStory.jsx";
 import SeoHomeIntro from "./components/SeoHomeIntro/SeoHomeIntro.jsx";
+import BlogTeaser from "./components/Blog/BlogTeaser.jsx";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Gallery />
       <LoveStory />
+      <BlogTeaser />
       <About />
       <FollowUs />
     </div>

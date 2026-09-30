@@ -169,6 +169,13 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
             </Link>
           </li>
 
+          {/* BLOG */}
+          <li className="min-w-[80px] text-center" role="none">
+            <Link href={l('/blog')} role="menuitem" aria-label="Go to Blog">
+              {language === 'ES' ? 'BLOG' : language === 'FR' ? 'BLOG' : language === 'UA' ? 'БЛОГ' : 'BLOG'}
+            </Link>
+          </li>
+
           {/* ABOUT */}
           <li className="min-w-[80px] text-center" role="none">
             <Link href={l('/#about')} role="menuitem" aria-label={`Learn more: ${menuItems[4]}`}>
@@ -297,6 +304,13 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
           <li role="none">
             <Link href={l('/love-story')} role="menuitem" aria-label={`Go to ${menuItems[3]} page`} onClick={closeMenu}>
               {menuItems[3]}
+            </Link>
+          </li>
+
+          {/* BLOG */}
+          <li role="none">
+            <Link href={l('/blog')} role="menuitem" aria-label="Go to Blog" onClick={closeMenu}>
+              {language === 'ES' ? 'BLOG' : language === 'FR' ? 'BLOG' : language === 'UA' ? 'БЛОГ' : 'BLOG'}
             </Link>
           </li>
 
