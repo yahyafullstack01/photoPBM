@@ -5,8 +5,8 @@ import { useLanguage } from "../../Functions/useLanguage";
 import { withLocale } from "../../utils/i18n";
 
 /**
- * Crawlable homepage intro with the search phrases people use
- * to find a photographer in Barcelona.
+ * Minimal SEO heading band — sits under the hero, not above it.
+ * Keeps “photographer in Barcelona” visible for Google without clutter.
  */
 export default function SeoHomeIntro() {
   const { language } = useLanguage();
@@ -14,47 +14,23 @@ export default function SeoHomeIntro() {
   const copy = {
     EN: {
       h1: "Photographer in Barcelona",
-      lead: "Looking for a professional photographer in Barcelona? Pic Best Moments captures love stories, couples, engagements, proposals, weddings, family photos and portraits at the city's best photo spots.",
-      points: [
-        "Couple & love story photoshoot in Barcelona",
-        "Engagement and proposal photography",
-        "Family and wedding photographer in Barcelona",
-        "Sessions at Gothic Quarter, Sagrada Família, Barceloneta, Park Güell & Ciutadella",
-      ],
-      cta: "Book your Barcelona photoshoot",
+      lead: "Love stories, proposals, weddings and family sessions at Gothic Quarter, Sagrada Família, Barceloneta and beyond.",
+      cta: "Book a session",
     },
     ES: {
       h1: "Fotógrafo en Barcelona",
-      lead: "¿Buscas un fotógrafo profesional en Barcelona? Pic Best Moments captura historias de amor, parejas, compromisos, propuestas, bodas, fotos familiares y retratos en los mejores lugares de la ciudad.",
-      points: [
-        "Sesión de pareja e historia de amor en Barcelona",
-        "Fotografía de compromiso y propuesta de matrimonio",
-        "Fotógrafo de familia y bodas en Barcelona",
-        "Sesiones en Barrio Gótico, Sagrada Família, Barceloneta, Park Güell y Ciutadella",
-      ],
-      cta: "Reserva tu sesión de fotos en Barcelona",
+      lead: "Historias de amor, propuestas, bodas y familia en el Barrio Gótico, Sagrada Família, Barceloneta y más.",
+      cta: "Reservar sesión",
     },
     FR: {
       h1: "Photographe à Barcelone",
-      lead: "Vous cherchez un photographe professionnel à Barcelone ? Pic Best Moments immortalise histoires d'amour, couples, fiançailles, demandes en mariage, mariages, familles et portraits dans les plus beaux lieux de la ville.",
-      points: [
-        "Séance couple et love story à Barcelone",
-        "Photographie de fiançailles et demande en mariage",
-        "Photographe famille et mariage à Barcelone",
-        "Séances au Quartier Gothique, Sagrada Família, Barceloneta, Park Güell et Ciutadella",
-      ],
-      cta: "Réservez votre séance photo à Barcelone",
+      lead: "Histoires d’amour, demandes en mariage, mariages et famille au Quartier Gothique, Sagrada Família, Barceloneta et plus.",
+      cta: "Réserver une séance",
     },
     UA: {
       h1: "Фотограф у Барселоні",
-      lead: "Шукаєте професійного фотографа в Барселоні? Pic Best Moments знімає love story, пари, заручини, пропозиції, весілля, сімейні фото та портрети у найкращих локаціях міста.",
-      points: [
-        "Парна фотосесія та love story у Барселоні",
-        "Фотографія заручин і пропозиції руки та серця",
-        "Сімейний і весільний фотограф у Барселоні",
-        "Зйомки в Готичному кварталі, Саграда Фамілія, Барселонета, Парк Гуель і Сіутаделла",
-      ],
-      cta: "Забронювати фотосесію в Барселоні",
+      lead: "Love story, пропозиції, весілля та сімейні зйомки в Готичному кварталі, біля Саграда Фамілія, на Барселонеті та інших локаціях.",
+      cta: "Забронювати",
     },
   };
 
@@ -63,25 +39,21 @@ export default function SeoHomeIntro() {
   return (
     <section
       aria-label={t.h1}
-      className="mx-auto max-w-5xl px-4 sm:px-6 pt-6 pb-2 text-center"
+      className="relative mx-auto max-w-3xl px-6 py-14 sm:py-16 text-center"
     >
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+      <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-rose-800/80 dark:text-rose-300/90">
+        Pic Best Moments
+      </p>
+      <h1 className="mt-3 text-3xl sm:text-4xl md:text-[2.75rem] font-semibold tracking-tight text-neutral-900 dark:text-white leading-[1.15]">
         {t.h1}
       </h1>
-      <p className="mt-4 text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-200">
+      <p className="mt-4 text-base sm:text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
         {t.lead}
       </p>
-      <ul className="mt-4 grid gap-2 sm:grid-cols-2 text-left sm:text-center text-sm sm:text-base text-gray-600 dark:text-gray-300">
-        {t.points.map((item) => (
-          <li key={item} className="sm:list-none">
-            {item}
-          </li>
-        ))}
-      </ul>
-      <div className="mt-6">
+      <div className="mt-8">
         <Link
           href={withLocale("/contact", language)}
-          className="inline-block rounded-md bg-rose-700 px-6 py-3 text-sm sm:text-base font-bold uppercase tracking-wide text-white hover:bg-rose-800 transition-colors"
+          className="inline-flex items-center justify-center border border-neutral-900 dark:border-white px-8 py-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-neutral-900 dark:text-white transition-colors hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-neutral-900"
         >
           {t.cta}
         </Link>
