@@ -1,7 +1,7 @@
 // src/app/seo/contact-jsonld.js
 
 const SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+  (process.env.NEXT_PUBLIC_SITE_URL || "https://www.pick-best-moment.com").replace(/\/$/, "");
 
 const contactJsonLd = {
   "@context": "https://schema.org",

@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Image from "next/image";
 import { useLanguage } from "../../Functions/useLanguage";
 
@@ -11,13 +10,6 @@ export default function About() {
       className="bg-white dark:bg-gray-900 py-12 px-6 sm:px-12"
       id="about"
     >
-      <Head>
-        <title>About - Your Photography Name</title>
-        <meta
-          name="description"
-          content="Learn about your local Barcelona photographer specializing in romantic couples, engagement, proposal, and more."
-        />
-      </Head>
       <div className="max-w-7xl mx-auto relative">
    
         <div className="hidden sm:flex flex-col md:flex-row items-center md:gap-8">

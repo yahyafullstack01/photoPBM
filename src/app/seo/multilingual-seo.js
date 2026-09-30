@@ -2,7 +2,7 @@
 // Language-specific SEO metadata for Barcelona Photography
 
 const SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+  (process.env.NEXT_PUBLIC_SITE_URL || "https://www.pick-best-moment.com").replace(/\/$/, "");
 
 /**
  * Multilingual SEO Configuration

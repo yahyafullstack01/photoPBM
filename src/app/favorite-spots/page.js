@@ -1,33 +1,17 @@
 "use client";
-import dynamic from "next/dynamic";
-import Script from "next/script";
-import Head from "next/head";
-import generateGalleryLocationsJsonLd from "../seo/gallery-locations-jsonld";
-import seoConfig from "../../../next-seo.config";
-import products from "../data/products";
 
-const Layout = dynamic(() => import("../components/Layout"), { ssr: false });
-const GalleryLocations = dynamic(() => import("../components/GalleryLocations/GalleryLocations"), { ssr: false });
+import { Suspense } from "react";
+import Script from "next/script";
+import Layout from "../components/Layout";
+import GalleryLocations from "../components/GalleryLocations/GalleryLocations";
+import generateGalleryLocationsJsonLd from "../seo/gallery-locations-jsonld";
+import products from "../data/products";
 
 export default function FavoriteSpotsPage() {
   const jsonLd = generateGalleryLocationsJsonLd(products);
-  const seo = seoConfig.favoriteSpots;
 
   return (
     <div className="transition-colors">
-      <Head>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        {seo.keywords && <meta name="keywords" content={seo.keywords} />}
-        <meta property="og:title" content={seo.openGraph.title} />
-        <meta property="og:description" content={seo.openGraph.description} />
-        <meta property="og:url" content={seo.openGraph.url} />
-        <meta property="og:type" content={seo.openGraph.type} />
-        <meta property="og:image" content={seo.openGraph.images[0].url} />
-        <link rel="canonical" href={seo.canonical} />
-        <meta name="robots" content={seo.robots} />
-      </Head>
-
       <Script
         id="gallery-locations-jsonld"
         type="application/ld+json"
@@ -35,7 +19,9 @@ export default function FavoriteSpotsPage() {
       />
 
       <Layout>
-        <GalleryLocations />
+        <Suspense fallback={<div className="p-8 text-center">Loading locations...</div>}>
+          <GalleryLocations />
+        </Suspense>
       </Layout>
     </div>
   );

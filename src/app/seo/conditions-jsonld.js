@@ -1,4 +1,4 @@
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.pick-best-moment.com").replace(/\/$/, "");
 
 const BRAND_NAME = "Pic Best Moments";
 

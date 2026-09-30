@@ -1,7 +1,8 @@
 // src/app/seo/site-jsonld.js
 
-const SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.pick-best-moment.com"
+).replace(/\/$/, "");
 
 /**
  * 🔹 Enhanced Website Schema
@@ -14,11 +15,6 @@ export const siteJsonLd = {
   description:
     "Professional photographer in Barcelona capturing love stories, family moments, and portrait sessions with a unique style.",
   image: `${SITE_URL}/Logo.webp`,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${SITE_URL}/search?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
-  },
   inLanguage: ["en", "es", "fr", "uk"],
 };
 
@@ -34,7 +30,7 @@ export const organizationJsonLd = {
   logo: `${SITE_URL}/Logo.webp`,
   image: `${SITE_URL}/Logo.webp`,
   description:
-    "Professional photography service in Barcelona specializing in love stories, weddings, family photo sessions, and portrait photography. Capturing your best moments at iconic Barcelona locations.",
+    "Photographer in Barcelona specializing in love stories, couple photoshoots, engagements, proposals, weddings, family sessions, and portrait photography at iconic Barcelona locations.",
   
   // Geographic & Service Area
   address: {
@@ -113,7 +109,7 @@ export const organizationJsonLd = {
     "@type": "ContactPoint",
     contactType: "Customer Service",
     email: "photographbusiness01@gmail.com",
-    telephone: "+34 600 123 456",
+    telephone: "+34654909621",
     areaServed: "ES",
     availableLanguage: [
       { "@type": "Language", name: "English", alternateName: "en" },

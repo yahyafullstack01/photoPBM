@@ -1,35 +1,37 @@
 'use client';
 
-import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaMoon, FaSun, FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
 import { useHeaderState } from '../../hooks/useHeader';
 import { useLanguage } from '../../Functions/useLanguage';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import location from '../../data/location';
 import { getLocationUrl } from '../../utils/slugs';
+import { withLocale, stripLocale } from '../../utils/i18n';
 
 const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const { translateList, language, setLanguage } = useLanguage();
   const menuItems = translateList('home', 'header');
+  const l = (path) => withLocale(path, language);
 
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const { isMenuOpen, toggleMenu, closeMenu } = useHeaderState();
 
   const toggleLanguage = () => {
-    setLanguage(prev =>
-      prev === 'EN' ? 'ES' : prev === 'ES' ? 'FR' : 'EN'
-      // UA language commented out: prev === 'FR' ? 'UA' : 'EN'
-    );
+    const order = ['EN', 'ES', 'FR'];
+    const next = order[(order.indexOf(language) + 1) % order.length];
+    setLanguage(next);
+    const current = stripLocale(pathname || '/');
+    router.push(withLocale(current, next));
   };
 
-  // Updated to use new SEO-friendly URL
   const goToCatalog = () => {
-    router.push('/favorite-spots');
+    router.push(l('/favorite-spots'));
   };
 
   const categories = [
@@ -40,10 +42,9 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
     })),
   ];
 
-  // Updated to use SEO-friendly URLs with slugs
   const handleCategoryClick = (locationPath) => {
     const url = getLocationUrl(locationPath);
-    router.push(url);
+    router.push(l(url));
     setIsCategoriesOpen(false);
     closeMenu();
   };
@@ -57,20 +58,9 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
     >
       {/* Brand */}
       <div className="flex-shrink-0 ml-0 sm:ml-8">
-        <Head>
-          {/* Preload small logo for mobile */}
-          <link
-            rel="preload"
-            as="image"
-            href="/Logo.webp"
-            type="image/avif"
-            media="(max-width: 480px)"
-          />
-        </Head>
-
-        <Link href="/" aria-label="Go to Home">
+        <Link href={l('/')} aria-label="Go to Home">
           <span className="flex items-center">
-            <h1 className="sr-only">PBM — Pic Best Moments</h1>
+            <span className="sr-only">Pic Best Moments — Photographer in Barcelona</span>
                         <Image
   src="/logo.jpg"
   alt="Pic Best Moments - Professional Photographer in Barcelona - Love Story, Wedding, Family Photography"
@@ -101,14 +91,14 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
         >
           {/* HOME */}
           <li className="min-w-[80px] text-center" role="none">
-            <Link href="/" role="menuitem" aria-label={`Go to ${menuItems[0]} page`}>
+            <Link href={l('/')} role="menuitem" aria-label={`Go to ${menuItems[0]} page`}>
               {menuItems[0]}
             </Link>
           </li>
 
           {/* GALLERY */}
           <li className="min-w-[80px] text-center" role="none">
-            <Link href="/Gallery" role="menuitem" aria-label={`Go to ${menuItems[1]} page`}>
+            <Link href={l('/Gallery')} role="menuitem" aria-label={`Go to ${menuItems[1]} page`}>
               {menuItems[1]}
             </Link>
           </li>
@@ -174,21 +164,21 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
 
           {/* LOVE STORIES */}
           <li className="min-w-[80px] text-center" role="none">
-            <Link href="/love-story" role="menuitem" aria-label={`Go to ${menuItems[3]} page`}>
+            <Link href={l('/love-story')} role="menuitem" aria-label={`Go to ${menuItems[3]} page`}>
               {menuItems[3]}
             </Link>
           </li>
 
           {/* ABOUT */}
           <li className="min-w-[80px] text-center" role="none">
-            <Link href="/#about" role="menuitem" aria-label={`Learn more: ${menuItems[4]}`}>
+            <Link href={l('/#about')} role="menuitem" aria-label={`Learn more: ${menuItems[4]}`}>
               {menuItems[4]}
             </Link>
           </li>
 
           {/* CONTACT */}
           <li className="min-w-[80px] text-center" role="none">
-            <Link href="/contact" role="menuitem" aria-label={`Go to ${menuItems[5]} page`}>
+            <Link href={l('/contact')} role="menuitem" aria-label={`Go to ${menuItems[5]} page`}>
               {menuItems[5]}
             </Link>
           </li>
@@ -260,14 +250,14 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
         <ul className="flex flex-col items-start space-y-4 p-6 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-black" role="menubar">
           {/* HOME */}
           <li role="none">
-            <Link href="/" role="menuitem" aria-label={`Go to ${menuItems[0]} page`} onClick={closeMenu}>
+            <Link href={l('/')} role="menuitem" aria-label={`Go to ${menuItems[0]} page`} onClick={closeMenu}>
               {menuItems[0]}
             </Link>
           </li>
 
           {/* GALLERY */}
           <li role="none">
-            <Link href="/Gallery" role="menuitem" aria-label={`Go to ${menuItems[1]} page`} onClick={closeMenu}>
+            <Link href={l('/Gallery')} role="menuitem" aria-label={`Go to ${menuItems[1]} page`} onClick={closeMenu}>
               {menuItems[1]}
             </Link>
           </li>
@@ -305,21 +295,21 @@ const Header = React.memo(({ isDarkMode, toggleDarkMode }) => {
 
           {/* LOVE STORIES */}
           <li role="none">
-            <Link href="/love-story" role="menuitem" aria-label={`Go to ${menuItems[3]} page`} onClick={closeMenu}>
+            <Link href={l('/love-story')} role="menuitem" aria-label={`Go to ${menuItems[3]} page`} onClick={closeMenu}>
               {menuItems[3]}
             </Link>
           </li>
 
           {/* ABOUT */}
           <li role="none">
-            <Link href="/#about" role="menuitem" aria-label={`Learn more: ${menuItems[4]}`} onClick={closeMenu}>
+            <Link href={l('/#about')} role="menuitem" aria-label={`Learn more: ${menuItems[4]}`} onClick={closeMenu}>
               {menuItems[4]}
             </Link>
           </li>
 
           {/* CONTACT */}
           <li role="none">
-            <Link href="/contact" role="menuitem" aria-label={`Go to ${menuItems[5]} page`} onClick={closeMenu}>
+            <Link href={l('/contact')} role="menuitem" aria-label={`Go to ${menuItems[5]} page`} onClick={closeMenu}>
               {menuItems[5]}
             </Link>
           </li>

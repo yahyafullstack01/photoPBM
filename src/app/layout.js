@@ -1,24 +1,26 @@
-
 import Script from "next/script";
-import { siteJsonLd, organizationJsonLd } from "./seo/loyout-jsonld"; 
+import { siteJsonLd, organizationJsonLd } from "./seo/loyout-jsonld";
 import { faqJsonLd } from "./seo/faq-jsonld";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import "./globals.css";
-import ErrorBoundary from "../app/components/ErrorBoundary/ErrorBoundary";
+import AppProviders from "./components/AppProviders";
+import { languageAlternates } from "./utils/i18n";
+import {
+  DEFAULT_OG_IMAGE,
+  getRequestLocale,
+  SITE_URL,
+} from "./seo/build-metadata";
 
-// База для абсолютних URL з ENV
-const SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+const LANG_HTML = { EN: "en", ES: "es", FR: "fr", UA: "uk" };
 
-// ---------- Metadata (App Router) ----------
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Professional Photographer in Barcelona | Pic Best Moments",
+    default:
+      "Photographer in Barcelona | Photoshoot, Love Story & Wedding | Pic Best Moments",
     template: "%s | Pic Best Moments",
   },
   description:
-    "Professional photographer in Barcelona specializing in love story, family, wedding, and portrait photography. Book your photo session at iconic Barcelona locations: Gothic Quarter, Sagrada Família, Barceloneta. Multilingual service in English, Spanish, French & Ukrainian.",
+    "Photographer in Barcelona for love story, couple, engagement, proposal, wedding, family and portrait photoshoots. Book a professional photo session at Gothic Quarter, Sagrada Família, Barceloneta, Park Güell & Ciutadella. English, Spanish, French & Ukrainian.",
 
   verification: {
     google: "Ym-lDSsvY4ph2BQ0M7nKfXEBTvyBK2GtZVov3YvwnsU",
@@ -26,89 +28,101 @@ export const metadata = {
 
   applicationName: "Pic Best Moments",
   keywords: [
-    // Barcelona & brand
-    "Barcelona photographer",
     "photographer in Barcelona",
-    "Barcelona photography",
-    "Pic Best Moments",
-    "fotógrafo Barcelona",
-    "photographe Barcelone",
+    "Barcelona photographer",
+    "photographer Barcelona",
     "professional photographer Barcelona",
-    "best photographer Barcelona",
+    "best photographer in Barcelona",
+    "hire photographer Barcelona",
+    "book photographer Barcelona",
     "photo session Barcelona",
-    "Barcelona photo tour",
-    // Love story & couples
-    "love story photoshoot Barcelona",
+    "photoshoot Barcelona",
+    "Barcelona photoshoot",
+    "photography in Barcelona",
+    "Barcelona photography",
+    "tourist photographer Barcelona",
+    "vacation photographer Barcelona",
+    "personal photographer Barcelona",
+    "love story photographer Barcelona",
     "love story photography Barcelona",
+    "love story photoshoot Barcelona",
     "couple photographer Barcelona",
     "couple photoshoot Barcelona",
-    "engagement photos Barcelona",
+    "couple photos Barcelona",
     "engagement photographer Barcelona",
+    "engagement photos Barcelona",
+    "proposal photographer Barcelona",
     "proposal photography Barcelona",
-    "proposal photos Barcelona",
     "romantic photoshoot Barcelona",
-    // Family & wedding
-    "family photos Barcelona",
     "family photographer Barcelona",
+    "family photos Barcelona",
     "wedding photographer Barcelona",
     "wedding photos Barcelona",
     "portrait photographer Barcelona",
-    // Locations
+    "portrait photoshoot Barcelona",
     "Gothic Quarter photoshoot",
-    "Gothic Quarter photography",
+    "Barrio Gotico photographer",
+    "Sagrada Familia photoshoot",
     "Sagrada Família photography",
-    "Sagrada Família photoshoot",
-    "Barceloneta beach photos",
-    "Barceloneta photographer",
-    "Parc Ciutadella photoshoot",
-    "Parc de la Ciutadella proposal",
-    "Ciutadella Park photos",
+    "Barceloneta beach photoshoot",
+    "Park Guell photoshoot",
     "Park Güell photographer",
-    "Park Güell photoshoot",
-    "Montjuïc photography Barcelona",
-    // Intent
-    "book photographer Barcelona",
-    "hire photographer Barcelona",
-    "Barcelona photoshoot locations",
+    "Ciutadella Park photoshoot",
+    "Montjuic photography Barcelona",
     "best photo spots Barcelona",
+    "Barcelona photoshoot locations",
+    "fotógrafo en Barcelona",
+    "fotógrafo Barcelona",
+    "fotografo Barcelona",
+    "sesión de fotos Barcelona",
+    "sesión fotográfica Barcelona",
+    "fotografía de pareja Barcelona",
+    "fotógrafo de bodas Barcelona",
+    "fotos de compromiso Barcelona",
+    "fotógrafo turistas Barcelona",
+    "photographe à Barcelone",
+    "photographe Barcelone",
+    "séance photo Barcelone",
+    "photographe couple Barcelone",
+    "photographe mariage Barcelone",
+    "фотограф Барселона",
+    "фотограф у Барселоні",
+    "фотосесія Барселона",
+    "Pic Best Moments",
+    "PBM photographer Barcelona",
   ],
   authors: [{ name: "Pic Best Moments", url: SITE_URL }],
   creator: "Pic Best Moments",
   publisher: "Pic Best Moments",
 
-  // Geographic targeting
   other: {
     "geo.region": "ES-CT",
     "geo.placename": "Barcelona",
     "geo.position": "41.3851;2.1734",
-    "ICBM": "41.3851, 2.1734",
+    ICBM: "41.3851, 2.1734",
   },
 
   alternates: {
     canonical: SITE_URL,
-    languages: {
-      en: `${SITE_URL}/en`,
-      es: `${SITE_URL}/es`,
-      fr: `${SITE_URL}/fr`,
-      uk: `${SITE_URL}/uk`,
-    },
+    languages: languageAlternates("/"),
   },
 
   openGraph: {
     type: "website",
     url: SITE_URL,
     siteName: "Pic Best Moments",
-    title: "Professional Photographer in Barcelona | Pic Best Moments",
+    title:
+      "Photographer in Barcelona | Photoshoot, Love Story & Wedding | Pic Best Moments",
     description:
-      "Professional photo sessions in Barcelona: love stories, families, weddings, portraits at iconic locations. Book your Barcelona photography experience today!",
+      "Photographer in Barcelona for love story, couple, engagement, proposal, wedding, family and portrait photoshoots. Book your session at Gothic Quarter, Sagrada Família, Barceloneta & more.",
     images: [
-      { 
-        url: "/Logo.webp", 
-        width: 1200, 
-        height: 628, 
-        alt: "Pic Best Moments - Professional Photographer in Barcelona",
-        type: "image/webp",
-      }
+      {
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 628,
+        alt: "Photographer in Barcelona — Pic Best Moments love story and couple photography",
+        type: "image/jpeg",
+      },
     ],
     locale: "en_US",
     alternateLocale: ["es_ES", "fr_FR", "uk_UA"],
@@ -116,15 +130,16 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Professional Photographer in Barcelona | Pic Best Moments",
+    title:
+      "Photographer in Barcelona | Photoshoot, Love Story & Wedding | Pic Best Moments",
     description:
-      "Professional photo sessions in Barcelona: love stories, families, weddings, portraits at iconic locations.",
-    images: ["/Logo.webp"],
+      "Hire a photographer in Barcelona for love stories, couples, engagements, weddings and family photos at iconic city locations.",
+    images: [DEFAULT_OG_IMAGE],
     creator: "@picbestmoments",
   },
 
-  robots: { 
-    index: true, 
+  robots: {
+    index: true,
     follow: true,
     googleBot: {
       index: true,
@@ -140,24 +155,24 @@ export const metadata = {
       { url: "/Logo.webp", sizes: "32x32", type: "image/webp" },
       { url: "/Logo.webp", sizes: "16x16", type: "image/webp" },
     ],
-    apple: [
-      { url: "/Logo.webp", sizes: "180x180", type: "image/webp" },
-    ],
+    apple: [{ url: "/Logo.webp", sizes: "180x180", type: "image/webp" }],
   },
 
-  // Category for better indexing
   category: "Photography Services",
 };
 
-// ---------- Root layout ----------
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const locale = await getRequestLocale();
+  const htmlLang = LANG_HTML[locale] || "en";
+
   return (
-    <html lang="en" className="h-full">
+    <html lang={htmlLang} className="h-full">
       <body className="h-full min-h-screen transition-colors">
-        {/* ✅ JSON-LD Structured Data for SEO */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
         />
         <script
           type="application/ld+json"
@@ -168,7 +183,6 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
 
-        {/* ✅ Google Analytics — підстав свій ID або забери блок якщо не потрібен */}
         {process.env.NODE_ENV === "production" && (
           <>
             <Script
@@ -186,10 +200,7 @@ export default function RootLayout({ children }) {
           </>
         )}
 
-        {/* Client providers/Boundary можна підключати всередині тіла */}
-        <ThemeProvider>
-          <ErrorBoundary>{children}</ErrorBoundary>
-        </ThemeProvider>
+        <AppProviders initialLanguage={locale}>{children}</AppProviders>
       </body>
     </html>
   );

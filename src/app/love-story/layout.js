@@ -1,7 +1,7 @@
 import { buildPageMetadata, getRequestLocale } from "../seo/build-metadata";
 import seoConfig from "../../../next-seo.config";
 
-const seo = seoConfig.contact;
+const seo = seoConfig.loveStory;
 
 export async function generateMetadata() {
   const lang = await getRequestLocale();
@@ -9,16 +9,12 @@ export async function generateMetadata() {
     title: seo.title,
     description: seo.description,
     keywords: seo.keywords,
-    path: "/contact",
-    image: "/og/barcelona-photographer.jpg",
+    path: "/love-story",
+    image: "/og/proposal-barcelona.jpg",
     lang,
   });
 }
 
-export default function ContactLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <main className="min-h-screen transition-colors">{children}</main>;
+export default function LoveStoryLayout({ children }) {
+  return children;
 }

@@ -1,30 +1,11 @@
 'use client';
 
-import Head from 'next/head';
 import { useMemo, useRef, useState, useEffect } from 'react';
 import { useLanguage } from '../../Functions/useLanguage';
 
 export default function Hero() {
-  const { translateList } = useLanguage();
-  const t = translateList('home', 'hero');
-  
-  // Translation indices:
-  // t[0] = title, t[1] = book now (unused here)
-  // t[2] = "Book Your Barcelona Session"
-  // t[3] = "Barceloneta Beach", t[4] = "Sagrada Família", t[5] = "Gothic Quarter", t[6] = "Park Güell"
-  // t[7-10] = descriptions for each location
-
   return (
     <>
-      <Head>
-        <meta name="description" content="PBM — Professional photographer in Barcelona" />
-        <meta name="keywords" content="Barcelona photographer, love story photography Barcelona, couple photoshoot Barcelona, engagement photos Barcelona, Gothic Quarter photoshoot, Sagrada Família photography, Barceloneta photos, professional photographer Barcelona" />
-        <meta property="og:title" content="PBM — Photographer in Barcelona" />
-        <meta property="og:description" content="Book your professional photoshoot in Barcelona with PBM." />
-        <meta property="og:image" content="/hoom/hero2.avif" />
-        <meta property="og:url" content="https://example.com" />
-      </Head>
-
       {/* DESKTOP */}
       <div className="hidden lg:flex justify-center items-center mb-8">
         <div className="w-screen px-0">
@@ -34,11 +15,8 @@ export default function Hero() {
 
       {/* MOBILE/TABLET */}
       <section className="lg:hidden flex flex-col items-center justify-center text-center overflow-hidden px-4 mb-4">
-       
-
-      <div className=" mb-6">
-     
-          <HeroSlider  compact />
+        <div className=" mb-6">
+          <HeroSlider compact />
         </div>
       </section>
     </>

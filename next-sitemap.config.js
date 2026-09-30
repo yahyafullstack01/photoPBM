@@ -1,53 +1,43 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.pick-best-moment.com', 
-  generateRobotsTxt: true, 
+  siteUrl: "https://www.pick-best-moment.com",
+  generateRobotsTxt: true,
   sitemapSize: 7000,
-  changefreq: 'weekly',
+  changefreq: "weekly",
   priority: 0.7,
-  exclude: ['/api/*', '/admin/*', '/_next/*'],
-  
-  // Add additional paths for better crawling
+  exclude: [
+    "/api/*",
+    "/admin/*",
+    "/_next/*",
+    "/GalleryLocationsPage",
+    "/gallery",
+    "/en",
+    "/en/*",
+  ],
+
   additionalPaths: async (config) => {
-    const paths = [
-      // Main pages
-      await config.transform(config, '/', { 
-        changefreq: 'daily', 
-        priority: 1.0 
-      }),
-      await config.transform(config, '/contact', { 
-        changefreq: 'monthly', 
-        priority: 0.9 
-      }),
-      await config.transform(config, '/Gallery', { 
-        changefreq: 'weekly', 
-        priority: 0.9 
-      }),
-      await config.transform(config, '/favorite-spots', { 
-        changefreq: 'weekly', 
-        priority: 0.9 
-      }),
-      await config.transform(config, '/Conditions', { 
-        changefreq: 'monthly', 
-        priority: 0.5 
-      }),
+    const basePaths = [
+      ["/", { changefreq: "daily", priority: 1.0 }],
+      ["/contact", { changefreq: "monthly", priority: 0.9 }],
+      ["/Gallery", { changefreq: "weekly", priority: 0.9 }],
+      ["/love-story", { changefreq: "weekly", priority: 0.9 }],
+      ["/favorite-spots", { changefreq: "weekly", priority: 0.9 }],
+      ["/Conditions", { changefreq: "monthly", priority: 0.5 }],
+      ["/favorite-spots/gothic-quarter", { changefreq: "weekly", priority: 0.8 }],
+      ["/favorite-spots/ciutadella-park", { changefreq: "weekly", priority: 0.8 }],
+      ["/favorite-spots/sagrada-familia", { changefreq: "weekly", priority: 0.8 }],
+      ["/favorite-spots/manjuic", { changefreq: "weekly", priority: 0.8 }],
     ];
 
-    // Add individual location pages
-    const locations = [
-      'gothic-quarter',
-      'ciutadella-park',
-      'sagrada-familia',
-      'manjuic',
-    ];
+    const locales = ["", "es", "fr", "uk"];
+    const paths = [];
 
-    for (const location of locations) {
-      paths.push(
-        await config.transform(config, `/favorite-spots/${location}`, {
-          changefreq: 'weekly',
-          priority: 0.8,
-        })
-      );
+    for (const [path, opts] of basePaths) {
+      for (const locale of locales) {
+        const localized =
+          locale === "" ? path : path === "/" ? `/${locale}` : `/${locale}${path}`;
+        paths.push(await config.transform(config, localized, opts));
+      }
     }
 
     return paths;
@@ -56,46 +46,19 @@ module.exports = {
   robotsTxtOptions: {
     policies: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
       },
       {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/'],
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/"],
       },
       {
-        userAgent: 'Googlebot-Image',
-        allow: '/',
+        userAgent: "Googlebot-Image",
+        allow: "/",
       },
-    ],
-    additionalSitemaps: [
-      'https://www.pick-best-moment.com/sitemap.xml',
     ],
   },
-
-  // Generate alternate language versions
-  alternateRefs: [
-    {
-      href: 'https://www.pick-best-moment.com',
-      hreflang: 'en',
-    },
-    {
-      href: 'https://www.pick-best-moment.com/es',
-      hreflang: 'es',
-    },
-    {
-      href: 'https://www.pick-best-moment.com/fr',
-      hreflang: 'fr',
-    },
-    {
-      href: 'https://www.pick-best-moment.com/uk',
-      hreflang: 'uk',
-    },
-    {
-      href: 'https://www.pick-best-moment.com',
-      hreflang: 'x-default',
-    },
-  ],
 };

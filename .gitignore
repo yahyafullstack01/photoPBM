@@ -28,3 +28,4 @@ Thumbs.db
 *.mov
 *.zip
 *.rar
+tsconfig.tsbuildinfo
